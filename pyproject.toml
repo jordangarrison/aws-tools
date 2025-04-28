@@ -3,9 +3,9 @@ requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
 [project]
-name = "tools"
+name = "aws-tools"
 version = "0.1.0"
-description = "Default template for PDM package"
+description = "CLI utilities for working with AWS services"
 authors = [
     {name = "Jordan Garrison", email = "jordan.garrison@flosports.tv"},
     {name = "Jordan Garrison", email = "jordangarrison@users.noreply.github.com"},
@@ -20,10 +20,14 @@ dependencies = [
 ]
 
 [project.scripts]
-dns-upload = "scripts.upload_route53_records:main"
+dns-upload = "aws_tools.dns_upload:main"
+reboot-ec2 = "aws_tools.reboot_ec2:main"
 
 [tool.pdm]
-distribution = false
+distribution = true
+[tool.pdm.build]
+includes = ["src/aws_tools"]
+
 [tool.pdm.dev-dependencies]
 dev = [
     "black>=23.7.0",

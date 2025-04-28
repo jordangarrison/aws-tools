@@ -2,7 +2,7 @@
 """
 Route53 DNS Records Bulk Upload Utility
 
-This script processes CSV files with DNS records and uploads them to AWS Route53.
+This module processes CSV files with DNS records and uploads them to AWS Route53.
 """
 
 import argparse
@@ -16,8 +16,8 @@ from typing import Dict, List, Optional, Tuple
 try:
     import boto3
     import colorama
-    from colorama import Fore, Style
     from botocore.exceptions import ClientError, NoCredentialsError
+    from colorama import Fore, Style
 except ImportError:
     print("Error: Required dependencies not found.")
     print("Please install with: pdm install")

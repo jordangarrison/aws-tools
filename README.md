@@ -14,6 +14,18 @@ Upload and manage DNS records in AWS Route53 from CSV files.
 - Dry-run mode to preview changes
 - Colorized output
 
+### reboot-ec2
+
+Quickly reboot an EC2 instance.
+
+```bash
+# Reboot by ID
+reboot-ec2 --instance-id i-asdfasdfasdfasdfsd --region us-west-2
+
+# Reboot by Name tag and wait for health checks
+reboot-ec2 --name MyInstanceName --wait --region us-west-2
+```
+
 ## Installation
 
 ### Using Nix Flakes
@@ -149,4 +161,31 @@ Example:
 ```csv
 prod,example.com,CNAME,www,target.example.com,300
 prod,example.com,TXT,_verification,verification-code-here,300
+```
+
+### EC2 Instance Reboot Utility
+
+Reboot EC2 instances by instance ID or Name tag.
+
+```bash
+# Reboot by instance ID
+reboot-ec2 --instance-id i-asdfasdfasdfasdfsd
+
+# Reboot by Name tag
+reboot-ec2 --name MyInstanceName
+
+# Specify region (defaults to AWS_REGION env var or us-west-2)
+reboot-ec2 --instance-id i-asdfasdfasdfasdfsd --region us-east-1
+
+# Use a specific AWS profile
+reboot-ec2 --instance-id i-asdfasdfasdfasdfsd --profile my-profile
+
+# Wait for instance to pass status checks after reboot
+reboot-ec2 --instance-id i-asdfasdfasdfasdfsd --wait
+
+# Custom timeout when waiting (default: 600 seconds)
+reboot-ec2 --instance-id i-asdfasdfasdfasdfsd --wait --timeout 300
+
+# Dry run (show what would happen without making changes)
+reboot-ec2 --instance-id i-asdfasdfasdfasdfsd --dry-run
 ```
