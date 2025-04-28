@@ -1,1 +1,1 @@
-"""Script utilities for FloRugby DNS management."""
+"""Script utilities for AWS tools."""
